@@ -14,7 +14,7 @@ import (
 )
 
 var file = flag.String("file", "", "指定文件")
-var dir = flag.String("dir", "", "指定目录(和 -f 二选一)")
+var dir = flag.String("dir", "", "深度遍历目录下所有md文件(和 -f 二选一)")
 var cover = flag.Bool("cover", false, "是否覆盖原文件, 默认为 false, 新建 $filename.marknum.md 文件")
 var min = flag.Int("min", 2, "最小标题级数, 范围[min,max), 默认为 2; 生成二级, 三级标题的序号(## 1. 标题 和 ### 1.1. 标题)")
 var max = flag.Int("max", 4, "最大标题级数, 范围[min,max), 默认为 4; 生成二级, 三级标题的序号(## 1. 标题 和 ### 1.1. 标题)")
@@ -150,7 +150,7 @@ func updateSectionNumbers(sectionNumbers []int, level int) {
 func addSectionNumber(line string, sectionNumbers []int, level int) string {
 	s := sectionNumberStr(sectionNumbers[:level])
 	if s != "" {
-		return fmt.Sprintf("%s %s", s, line)
+		return fmt.Sprintf("%s %s\n", strings.TrimSpace(s), strings.TrimSpace(line))
 	}
 	return ""
 }
@@ -162,7 +162,7 @@ func addSectionNumber(line string, sectionNumbers []int, level int) string {
 // 比如输入 "## 1.1. 标题" 返回 "标题"
 // 比如输入 "## 1.1.1 标题" 返回 "标题"
 // 比如输入 "## 1.1.1. 标题" 返回 "标题"
-var delSectionNumberRe = regexp.MustCompile(`(\s*#+\s*)([\d\.]*)(\s*)`)
+var delSectionNumberRe = regexp.MustCompile(`(\s*#+\s+)([\d\.]*)(\s*)`)
 
 func delSectionNumber(line string) string {
 	return delSectionNumberRe.ReplaceAllString(line, "")
