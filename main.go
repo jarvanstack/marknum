@@ -23,8 +23,8 @@ func main() {
 	flag.Parse()
 
 	if *file == "" && *dir == "" {
-		fmt.Printf("Usage: %s -file test.md \n", os.Args[0])
-		fmt.Printf("Usage: %s -dir testdir \n", os.Args[0])
+		fmt.Printf("Help:\n %s -h  \n", os.Args[0])
+		fmt.Printf("Example: \n marknum -dir ./ -cover ture \n")
 		os.Exit(1)
 	}
 
