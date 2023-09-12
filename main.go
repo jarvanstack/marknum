@@ -208,11 +208,6 @@ func sectionNumberStr(sectionNumbers []int) string {
 			break
 		}
 
-		// 序号为 0 时, 不需要序号
-		if n == 0 {
-			continue
-		}
-
 		buf.WriteString(fmt.Sprintf("%d.", n))
 	}
 	return buf.String()
