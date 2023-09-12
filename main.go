@@ -189,9 +189,6 @@ func sectionNumberStr(sectionNumbers []int) string {
 	var buf bytes.Buffer
 	// 添加 #
 	for i := 0; i < len(sectionNumbers); i++ {
-		if sectionNumbers[i] == 0 {
-			break
-		}
 		buf.WriteString("#")
 	}
 
@@ -200,13 +197,14 @@ func sectionNumberStr(sectionNumbers []int) string {
 
 	// 序号
 	for i, n := range sectionNumbers {
-		// 省略标题1
-		if i == 0 {
+		// 例如一级标题不需要序号
+		level := i + 1
+		if level < *min {
 			continue
 		}
 
-		// 只需要二级三级标题
-		if n == 0 || i == 3 {
+		// 例如只需要二级三级标题
+		if level >= *max {
 			break
 		}
 
