@@ -12,7 +12,7 @@
 
 自动添加/更新 markdown 标题序号，支持多级标题。
 
-## 示例代码
+## 1. 示例代码
 
 输入 
 
@@ -47,17 +47,17 @@ $ marknum -file test.md
 ## 2. 二级标题
 ```
 
-## 1. 安装
+## 2. 安装
 
-### Go语言安装
+### 2.1. Go语言安装
 
 ```bash
 go install github.com/jarvanstack/marknum@latest
 ```
 
-### 执行文件TODO:
+### 2.2. 执行文件TODO:
 
-## 2. 使用
+## 3. 使用
 
 ```bash
 $ marknum -h
