@@ -74,4 +74,11 @@ Usage of marknum:
         最小标题级数, 范围[min,max), 默认为 2; 生成二级, 三级标题的序号(## 1. 标题 和 ### 1.1. 标题) (default 2)
 ```
 
+## 4. 常用命令
+
+```bash
+# 将当前目录下所有 markdown 文件添加/更新序号, 覆盖源文件
+marknum -dir ./ -cover ture
+```
+
 
