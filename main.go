@@ -96,13 +96,15 @@ func sectionNumber(in io.Reader) (string, error) {
 	inCodeBlock := false
 
 	// 一行行读取
-	for {
+	var finish bool
+	for !finish {
 		line, err := r.ReadString('\n')
 		if err != nil {
 			if err == io.EOF {
-				break
+				finish = true
+			} else {
+				return "", err
 			}
-			return "", err
 		}
 
 		// 识别代码块
