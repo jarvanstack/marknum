@@ -55,7 +55,9 @@ $ marknum -file test.md
 go install github.com/jarvanstack/marknum@latest
 ```
 
-### 2.2. 执行文件TODO:
+### 2.2. 可执行文件
+
+下载可执行文件: https://github.com/jarvanstack/marknum/releases
 
 ## 3. 使用
 
