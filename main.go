@@ -17,7 +17,7 @@ var file = flag.String("file", "", "指定文件")
 var dir = flag.String("dir", "", "深度遍历目录下所有md文件(和 -f 二选一)")
 var cover = flag.Bool("cover", false, "是否覆盖原文件, 默认为 false, 新建 $filename.marknum.md 文件")
 var min = flag.Int("min", 2, "最小标题级数, 范围[min,max), 默认为 2; 生成二级, 三级标题的序号(## 1. 标题 和 ### 1.1. 标题)")
-var max = flag.Int("max", 4, "最大标题级数, 范围[min,max), 默认为 4; 生成二级, 三级标题的序号(## 1. 标题 和 ### 1.1. 标题)")
+var max = flag.Int("max", 5, "最大标题级数, 范围[min,max), 默认为 4; 生成二级, 三级标题的序号(## 1. 标题 和 ### 1.1. 标题)")
 
 func main() {
 	flag.Parse()
@@ -197,20 +197,18 @@ func sectionNumberStr(sectionNumbers []int) string {
 	// 空格
 	buf.WriteString(" ")
 
-	// 序号
-	for i, n := range sectionNumbers {
-		// 例如一级标题不需要序号
-		level := i + 1
-		if level < *min {
-			continue
-		}
+	// 例如一级标题和六级标题不需要序号
+	if len(sectionNumbers) >= *min && len(sectionNumbers) < *max {
+		for i, n := range sectionNumbers {
+			// 例如给二级标题编号的时候忽略一级标题
+			level := i + 1
+			if level < *min {
+				continue
+			}
 
-		// 例如只需要二级三级标题
-		if level >= *max {
-			break
+			buf.WriteString(fmt.Sprintf("%d.", n))
 		}
-
-		buf.WriteString(fmt.Sprintf("%d.", n))
 	}
+
 	return buf.String()
 }
