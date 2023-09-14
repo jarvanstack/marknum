@@ -14,17 +14,17 @@ import (
 )
 
 var file = flag.String("file", "", "指定文件")
-var dir = flag.String("dir", "", "深度遍历目录下所有md文件(和 -f 二选一)")
+var dir = flag.String("dir", "", "深度遍历目录下所有md文件(和 -file 二选一)")
 var cover = flag.Bool("cover", false, "是否覆盖原文件, 默认为 false, 新建 $filename.marknum.md 文件")
-var min = flag.Int("min", 2, "最小标题级数, 范围[min,max), 默认为 2; 生成二级, 三级标题的序号(## 1. 标题 和 ### 1.1. 标题)")
-var max = flag.Int("max", 5, "最大标题级数, 范围[min,max), 默认为 4; 生成二级, 三级标题的序号(## 1. 标题 和 ### 1.1. 标题)")
+var min = flag.Int("min", 2, "最小标题级数, 范围[min,max), 默认为二级,三级,四级标题生成序号")
+var max = flag.Int("max", 5, "最大标题级数, 范围[min,max), 默认为二级,三级,四级标题生成序号")
 
 func main() {
 	flag.Parse()
 
 	if *file == "" && *dir == "" {
 		fmt.Printf("Help:\n %s -h  \n", os.Args[0])
-		fmt.Printf("Example: \n marknum -dir ./ -cover ture \n")
+		fmt.Printf("Example: \n marknum -dir ./ -cover \n")
 		os.Exit(1)
 	}
 

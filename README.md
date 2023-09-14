@@ -67,13 +67,13 @@ Usage of marknum:
   -cover
         是否覆盖原文件, 默认为 false, 新建 $filename.marknum.md 文件
   -dir string
-        指定目录(和 -f 二选一)
+        深度遍历目录下所有md文件(和 -file 二选一)
   -file string
         指定文件
   -max int
-        最大标题级数, 范围[min,max), 默认为 4; 生成二级, 三级标题的序号(## 1. 标题 和 ### 1.1. 标题) (default 4)
+        最大标题级数, 范围[min,max), 默认为二级,三级,四级标题生成序号 (default 5)
   -min int
-        最小标题级数, 范围[min,max), 默认为 2; 生成二级, 三级标题的序号(## 1. 标题 和 ### 1.1. 标题) (default 2)
+        最小标题级数, 范围[min,max), 默认为二级,三级,四级标题生成序号 (default 2)
 ```
 
 ## 4. 常用命令
