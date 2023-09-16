@@ -44,7 +44,7 @@ func main() {
 // 通过目录获取所有的 md 文件
 func mdPaths(dir string) []string {
 	var files []string
-	filepath.WalkDir(dir, func(path string, d fs.DirEntry, err error) error {
+	err := filepath.WalkDir(dir, func(path string, d fs.DirEntry, err error) error {
 		if !d.IsDir() {
 			if strings.HasSuffix(d.Name(), ".md") {
 				files = append(files, path)
@@ -52,6 +52,10 @@ func mdPaths(dir string) []string {
 		}
 		return nil
 	})
+	if err != nil {
+		fmt.Printf("filepath.WalkDir(dir, func(path string, d fs.DirEntry, err error) error) err:%v \n", err)
+		os.Exit(1)
+	}
 	return files
 }
 
